@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text('This is initial page'),
+            const Text('Lista de Testes'),
             BlocProvider<PositionsBloc>(
               create: (context) => _bloc,
               child: BlocListener<PositionsBloc, PositionState>(
@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage> {
                 if (state is PositionsErrorState) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text(state.message),
+                    duration: const Duration(seconds: 60),
                   ));
                 }
               }, child: BlocBuilder<PositionsBloc, PositionState>(

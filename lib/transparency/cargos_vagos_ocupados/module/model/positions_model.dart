@@ -12,7 +12,7 @@ class Positions {
     required this.year,
   });
 
-  factory Positions.fromJson(Map<String, dynamic> json) {
+  factory Positions.fromJson(Map json) {
     return Positions(
       entrancia: json['entrancia'],
       speciality: json['speciality'],
