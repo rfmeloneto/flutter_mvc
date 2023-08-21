@@ -25,41 +25,50 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home Page')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text('Lista de Testes'),
-            BlocProvider<PositionsBloc>(
-              create: (context) => _bloc,
-              child: BlocListener<PositionsBloc, PositionState>(
-                  listener: (context, state) {
-                if (state is PositionsErrorState) {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text(state.message),
-                    duration: const Duration(seconds: 60),
-                  ));
-                }
-              }, child: BlocBuilder<PositionsBloc, PositionState>(
-                      builder: (context, state) {
-                if (state is PositionsLoadingState ||
-                    state is PositionsInitialState) {
-                  return const CircularProgressIndicator();
-                }
-                if (state is PositionsLoadedState) {
-                  return listBuilderCard(context, state.positions);
-                }
-                return const SizedBox();
-              })),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                  onPressed: () => Modular.to.navigate('/form'),
-                  child: const Text('Novo dado')),
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text('Lista de Testes'),
+              BlocProvider<PositionsBloc>(
+                create: (context) => _bloc,
+                child: BlocListener<PositionsBloc, PositionState>(
+                    listener: (context, state) {
+                  if (state is PositionsErrorState) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(state.message),
+                      duration: const Duration(seconds: 60),
+                    ));
+                  }
+                }, child: BlocBuilder<PositionsBloc, PositionState>(
+                        builder: (context, state) {
+                  if (state is PositionsLoadingState ||
+                      state is PositionsInitialState) {
+                    return const CircularProgressIndicator();
+                  }
+                  if (state is PositionsLoadedState) {
+                    return ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: state.positions.collection.length,
+                        itemBuilder: (__, index) {
+                          return listBuilderCard(
+                              context, state.positions.collection[index]);
+                        });
+                  }
+                  return const SizedBox();
+                })),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                    onPressed: () => Modular.to.navigate('/form'),
+                    child: const Text('Novo dado')),
+              ),
+            ],
+          ),
         ),
       ),
     );

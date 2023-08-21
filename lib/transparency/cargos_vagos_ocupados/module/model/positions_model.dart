@@ -1,31 +1,11 @@
+import 'collection_model.dart';
 
 class Positions {
-  final String entrancia;
-  final String speciality;
-  final int month;
-  final int year;
-  Positions({
-    required this.entrancia,
-    required this.speciality,
-    required this.month,
-    required this.year,
-  });
+  final List<CollectionModel> collection;
 
-  factory Positions.fromJson(Map json) {
-    return Positions(
-      entrancia: json['entrancia'],
-      speciality: json['speciality'],
-      month: json['month'],
-      year: json['year'],
-    );
-  }
+  Positions({required this.collection});
 
-  Map<String, dynamic> toJson() {
-    return {
-      'entrancia': entrancia,
-      'speciality': speciality,
-      'month': month,
-      'year': year,
-    };
+  static fromJson(Map json) {
+    return Positions(collection: CollectionModel.fromJson(json['collection']));
   }
 }

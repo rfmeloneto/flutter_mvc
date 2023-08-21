@@ -15,8 +15,6 @@ class PositionsLoadingState extends PositionState {}
 class PositionsLoadedState extends PositionState {
   final Positions positions;
   const PositionsLoadedState({required this.positions});
-  @override
-  List<Object> get props => [positions];
 }
 
 class PositionsErrorState extends PositionState {
