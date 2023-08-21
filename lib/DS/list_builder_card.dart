@@ -5,7 +5,7 @@ Widget listBuilderCard(BuildContext context, List<Positions> positionsList) {
   return ListView.builder(
       itemCount: 5,
       itemBuilder: (context, index) {
-        Positions model = positionsList[index]
+        Positions model = positionsList[index];
         return Container(
             padding: const EdgeInsets.all(8.0),
             child: Card(
