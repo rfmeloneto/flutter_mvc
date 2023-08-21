@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 
 class Positions {
   final String entrancia;
@@ -12,7 +11,10 @@ class Positions {
     required this.year,
   });
 
-  factory Positions.fromJson(Map json) {
+  factory Positions.fromJson(Map? json) {
+    if (json == null) {
+      throw Exception("Invalid JSON format");
+    }
     return Positions(
       entrancia: json['entrancia'],
       speciality: json['speciality'],
