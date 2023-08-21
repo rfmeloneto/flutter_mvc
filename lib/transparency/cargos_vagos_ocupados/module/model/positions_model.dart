@@ -2,8 +2,8 @@
 class Positions {
   final String entrancia;
   final String speciality;
-  final String month;
-  final String year;
+  final int month;
+  final int year;
   Positions({
     required this.entrancia,
     required this.speciality,
@@ -11,10 +11,7 @@ class Positions {
     required this.year,
   });
 
-  factory Positions.fromJson(Map? json) {
-    if (json == null) {
-      throw Exception("Invalid JSON format");
-    }
+  factory Positions.fromJson(Map json) {
     return Positions(
       entrancia: json['entrancia'],
       speciality: json['speciality'],

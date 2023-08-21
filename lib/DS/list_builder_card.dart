@@ -3,7 +3,7 @@ import '../transparency/cargos_vagos_ocupados/module/model/positions_model.dart'
 
 Widget listBuilderCard(BuildContext context, Positions model) {
   return ListView.builder(
-      itemCount: model.entrancia.length,
+      itemCount: 5,
       itemBuilder: (context, index) {
         return Container(
             padding: const EdgeInsets.all(8.0),
@@ -12,10 +12,10 @@ Widget listBuilderCard(BuildContext context, Positions model) {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: <Widget>[
-                    Text("Entrancia: ${model.entrancia[index]}"),
-                    Text("Speciality: ${model.speciality[index]}"),
-                    Text("Month: ${model.month[index]}"),
-                    Text("Year: ${model.year[index]}"),
+                    Text("Entrancia: ${model.entrancia}"),
+                    Text("Speciality: ${model.speciality}"),
+                    Text("Month: ${model.month}"),
+                    Text("Year: ${model.year}"),
                   ],
                 ),
               ),
